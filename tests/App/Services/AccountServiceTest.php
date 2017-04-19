@@ -29,7 +29,12 @@ class AccountServiceTest extends TestCase
             ->setClientName('Antoine RIDON')
             ->setNumero('67453791')
         ;
-        
+        $result = $this->service->credit($account, -1);
+        $this->assertFalse($result);
+
+        $result = $this->service->credit($account, 'Pizza');
+        $this->assertFalse($result);
+
         $result = $this->service->credit($account, 50);
         $this->assertTrue($result);
     }
