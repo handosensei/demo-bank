@@ -13,9 +13,37 @@ class AccountService
      */
     public function credit(Account $account, $amount)
     {
+        if (!$this->amountIsValid($amount)) {
+            return false;
+        }
         $currentAmount = $account->getAmount();
         $account->setAmount($currentAmount + $amount);
 
+        return true;
+    }
+
+    /**
+     * @param Account $account
+     * @param float $amount
+     * @return bool
+     */
+    public function debit(Account $account, $amount)
+    {
+        if (!$this->amountIsValid($amount)) {
+            return false;
+        }
+        $currentAmount = $account->getAmount();
+        $account->setAmount($currentAmount - $amount);
+
+        return true;
+    }
+
+    /**
+     * @param $amount
+     * @return bool
+     */
+    private function amountIsValid($amount)
+    {
         return true;
     }
 }
