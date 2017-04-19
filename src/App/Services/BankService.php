@@ -8,6 +8,20 @@ use App\Entity\Bank;
 class BankService
 {
     /**
+     * @var AccountService
+     */
+    private $accountService;
+
+    /**
+     * BankService constructor.
+     * @param AccountService $accountService
+     */
+    public function __construct(AccountService $accountService)
+    {
+        $this->accountService = $accountService;
+    }
+
+    /**
      * @param Account $account
      * @param Bank $bank
      * @return bool
@@ -27,5 +41,18 @@ class BankService
     public function deleteAccount(Account $account, Bank $bank)
     {
         return $bank->removeAccount($account);
+    }
+
+    /**
+     * @param Account $debitAccount
+     * @param Account $creditAccount
+     * @param $amount
+     * @return bool
+     */
+    public function transfer(Account $debitAccount, Account $creditAccount, $amount)
+    {
+        $this->accountService->debit($debitAccount, $amount);
+        $this->accountService->credit($creditAccount, $amount);
+        return true;
     }
 }

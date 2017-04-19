@@ -44,6 +44,6 @@ class AccountService
      */
     private function amountIsValid($amount)
     {
-        return true;
+        return $amount > 0;
     }
 }
