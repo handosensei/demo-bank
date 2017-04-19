@@ -14,6 +14,11 @@ class Bank
      */
     private $name;
 
+    public function __construct()
+    {
+        $this->accounts = array();
+    }
+
     /**
      * @return array
      */
@@ -28,6 +33,29 @@ class Bank
     public function setAccounts($accounts)
     {
         $this->accounts = $accounts;
+    }
+
+    /**
+     * @param Account $account
+     */
+    public function addAccount(Account $account)
+    {
+        $this->accounts[$account->getNumero()] = $account;
+    }
+
+    /**
+     * @param Account $accountToRemove
+     * @return bool
+     */
+    public function removeAccount(Account $accountToRemove)
+    {
+        if (!array_key_exists($accountToRemove->getNumero(), $this->accounts)) {
+            return false;
+        }
+
+        unset($this->accounts[$accountToRemove->getNumero()]);
+
+        return true;
     }
 
     /**
