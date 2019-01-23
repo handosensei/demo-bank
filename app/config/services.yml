@@ -1,0 +1,7 @@
+services:
+
+  account.service:
+    class:     App\Services\AccountService
+
+  bank.service:
+    class:     App\Services\BankService
