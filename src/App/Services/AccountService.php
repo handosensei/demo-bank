@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Entity\Account;
 
-class AccountService
+class AccountService extends BaseAccount implements AccountInterface
 {
+    const OVERDRAFT = -500;
+
     /**
      * @param Account $account
      * @param float $amount
