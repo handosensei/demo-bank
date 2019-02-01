@@ -12,9 +12,9 @@ class BankService
      */
     private $accountService;
 
-    public function __construct()
+    public function __construct(AccountInterface $accountService)
     {
-        $this->accountService = new AccountBetaService();
+        $this->accountService = $accountService;
     }
 
     /**
@@ -42,13 +42,18 @@ class BankService
     /**
      * @param Account $debitAccount
      * @param Account $creditAccount
-     * @param $amount
+     * @param float $amount
      * @return bool
      */
     public function transfer(Account $debitAccount, Account $creditAccount, $amount)
     {
+        if (!$this->accountService->canDebit($debitAccount, $amount)) {
+            return false;
+        }
+
         $this->accountService->debit($debitAccount, $amount);
         $this->accountService->credit($creditAccount, $amount);
+
         return true;
     }
 }

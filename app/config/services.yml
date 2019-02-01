@@ -1,7 +1,12 @@
 services:
 
-  account.service:
-    class:     App\Services\AccountService
+  App\Services\AccountService:
+      class:     App\Services\AccountService
 
-  bank.service:
-    class:     App\Services\BankService
+  App\Services\AccountBetaService:
+      class:     App\Services\AccountBetaService
+
+  App\Services\BankService:
+      class:     App\Services\BankService
+      arguments:
+          - '@App\Services\AccountBetaService'
