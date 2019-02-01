@@ -46,9 +46,4 @@ class AccountService
     {
         return $amount > 0;
     }
-
-    public function hello()
-    {
-        var_dump('hello world');
-    }
 }

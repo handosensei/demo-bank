@@ -12,13 +12,9 @@ class BankService
      */
     private $accountService;
 
-    /**
-     * BankService constructor.
-     * @param AccountService $accountService
-     */
-    public function __construct(AccountService $accountService)
+    public function __construct()
     {
-        $this->accountService = $accountService;
+        $this->accountService = new AccountService();
     }
 
     /**

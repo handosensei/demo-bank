@@ -17,7 +17,7 @@ class BankServiceTest extends TestCase
 
     public function setUp()
     {
-        $this->service = new BankService(new AccountService());
+        $this->service = new BankService();
     }
 
     /**
@@ -43,7 +43,22 @@ class BankServiceTest extends TestCase
      */
     public function transfer()
     {
-        $result = $this->service->transfer(new Account(), new Account(), 1000);
+        $account1 = new Account();
+        $account1
+            ->setClientName('Jean')
+            ->setAmount(1000)
+            ->setNumero('7897564123');
+
+        $account2 = new Account();
+        $account2
+            ->setClientName('Paul')
+            ->setAmount(965)
+            ->setNumero('2345675');
+
+        $result = $this->service->transfer($account1, $account2, 1000);
+
         $this->assertTrue($result);
+        $this->assertEquals(0, $account1->getAmount());
+        $this->assertEquals(1965, $account2->getAmount());
     }
 }

@@ -8,6 +8,3 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 $containerBuilder = new ContainerBuilder();
 $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
 $loader->load('services.yml');
-
-$serviceOne = $containerBuilder->get('account.service');
-$serviceOne->hello();
