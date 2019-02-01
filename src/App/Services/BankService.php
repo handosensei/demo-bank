@@ -14,7 +14,7 @@ class BankService
 
     public function __construct()
     {
-        $this->accountService = new AccountService();
+        $this->accountService = new AccountBetaService();
     }
 
     /**
